@@ -19,6 +19,25 @@
   </script>
   <style>
 
+
+.dev-panel{
+    display:flex;
+    gap:10px;
+    justify-content:center;
+    margin:20px 0;
+}
+
+.dev-panel input{
+    width:220px;
+    padding:10px;
+}
+
+.dev-panel button{
+    padding:10px 20px;
+    cursor:pointer;
+}
+
+    
 html,
 body {
   margin: 0;
@@ -562,10 +581,26 @@ body{
       Скачать паспорт
     </a>
 
+
     
-<button onclick="saveCamera()">
-    Сохранить текущий ракурс
-</button>
+<div class="dev-panel">
+
+    <input
+        id="partName"
+        placeholder="Название (например pump3)">
+
+    <button onclick="saveView()">
+        Сохранить ракурс
+    </button>
+
+</div>
+    
+    
+<textarea
+id="cameraCode"
+rows="8"
+style="width:100%;margin-top:15px;"></textarea>
+    
 
     <div class="main-layout">  
       
@@ -810,16 +845,26 @@ function showPart(name) {
 }
 
 
-  
-function saveCamera() {
+function saveView(){
 
     const model = document.getElementById("model");
 
-    console.log("camera-target:");
-    console.log(model.cameraTarget);
+    const name =
+        document.getElementById("partName").value.trim();
 
-    console.log("camera-orbit:");
-    console.log(model.cameraOrbit);
+    if(name===""){
+        alert("Введите название точки.");
+        return;
+    }
+
+    const code =
+`${name}: {
+    target: "${model.cameraTarget}",
+    orbit: "${model.cameraOrbit}",
+    pdf: ""
+},`;
+
+    document.getElementById("cameraCode").value = code;
 
 }
   
