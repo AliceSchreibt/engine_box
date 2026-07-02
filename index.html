@@ -562,6 +562,10 @@ body{
       Скачать паспорт
     </a>
 
+    
+<button onclick="saveCamera()">
+    Сохранить текущий ракурс
+</button>
 
     <div class="main-layout">  
       
@@ -762,8 +766,8 @@ const parts = {
   },
 
   sh: {
-    target: "0.052m -1.327m -0.5m",
-    orbit: "-180deg 180deg 1m",
+    target: -25deg 74deg 0.55m
+    orbit: 0.319m -0.076m -0.053m
     pdf: "heat.pdf"
   },
   lmk: {
@@ -805,6 +809,20 @@ function showPart(name) {
   model.cameraOrbit = parts[name].orbit;
 }
 
+
+  
+function saveCamera() {
+
+    const model = document.getElementById("model");
+
+    console.log("camera-target:");
+    console.log(model.cameraTarget);
+
+    console.log("camera-orbit:");
+    console.log(model.cameraOrbit);
+
+}
+  
 
 </script>
 
