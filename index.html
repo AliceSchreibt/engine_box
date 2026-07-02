@@ -583,25 +583,9 @@ body{
 
 
     
-<div class="dev-panel">
 
-    <input
-        id="partName"
-        placeholder="Название (например pump3)">
-
-    <button onclick="saveView()">
-        Сохранить ракурс
-    </button>
-
-</div>
     
     
-<textarea
-id="cameraCode"
-rows="8"
-style="width:100%;margin-top:15px;"></textarea>
-    
-
     <div class="main-layout">  
       
 <div class="top-menu">
@@ -705,6 +689,24 @@ data-visibility-attribute="visible">
 
    
 </model-viewer> 
+
+
+
+     <div id="cameraInfo" style="
+    margin-top:15px;
+    padding:12px;
+    background:#f5f5f5;
+    border:1px solid #ddd;
+    border-radius:8px;
+    font-family:monospace;
+    white-space:pre-line;
+">
+Поверните модель мышью...
+</div>
+
+
+
+     
  </div>
 
 </div>
@@ -845,28 +847,20 @@ function showPart(name) {
 }
 
 
-function saveView(){
 
-    const model = document.getElementById("model");
 
-    const name =
-        document.getElementById("partName").value.trim();
+const model = document.getElementById("model");
+const info = document.getElementById("cameraInfo");
 
-    if(name===""){
-        alert("Введите название точки.");
-        return;
-    }
+model.addEventListener("camera-change", () => {
 
-    const code =
-`${name}: {
-    target: "${model.cameraTarget}",
-    orbit: "${model.cameraOrbit}",
-    pdf: ""
-},`;
+    info.innerHTML =
+`target: "${model.cameraTarget}"
 
-    document.getElementById("cameraCode").value = code;
+orbit: "${model.cameraOrbit}"`;
 
-}
+});
+
   
 
 </script>
