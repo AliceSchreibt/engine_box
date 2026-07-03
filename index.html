@@ -624,7 +624,7 @@ body{
   camera-controls
   auto-rotate-delay="0"
   rotation-per-second="2deg"
-  camera-target="0,306m -0,006m -0,1428m"
+  camera-target="0.306m -0.006m -0.1428m"
   camera-orbit="-180deg 176.91deg 1.46m"
   interaction-prompt="none"
   shadow-intensity="1"
@@ -849,19 +849,19 @@ function showPart(name) {
 
 
 const model = document.getElementById("model");
-const info = document.getElementById("cameraInfo");
+const panel = document.getElementById("cameraInfo");
 
 setInterval(() => {
 
-    info.innerHTML =
+    const orbit = model.getCameraOrbit().toString();
+    const target = model.getCameraTarget().toString();
 
-`target:
-${model.cameraTarget}
+    panel.textContent =
+`target: "${target}"
 
-orbit:
-${model.cameraOrbit}`;
+orbit: "${orbit}"`;
 
-},100);
+}, 100);
 
 
   
