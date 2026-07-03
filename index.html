@@ -539,6 +539,52 @@ body{
   border:none;
 }
 
+
+
+#cameraInfo{
+    position:fixed;
+    top:20px;
+    right:20px;
+
+    width:380px;
+
+    background:#222;
+    color:#0f0;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    z-index:9999;
+
+    font-family:Consolas, monospace;
+}
+
+#cameraInfo input{
+
+    width:100%;
+    padding:8px;
+
+    margin-bottom:10px;
+}
+
+#cameraInfo button{
+
+    width:100%;
+    padding:10px;
+
+    margin-bottom:10px;
+
+    cursor:pointer;
+}
+
+#partCode{
+
+    white-space:pre-wrap;
+}
+
+
+    
     
   </style>
 </head>
@@ -691,17 +737,17 @@ data-visibility-attribute="visible">
 </model-viewer> 
 
 
+<div id="cameraInfo">
+    <input
+        id="partName"
+        placeholder="Название (pump)"
+        value="pump">
 
-     <div id="cameraInfo" style="
-    margin-top:15px;
-    padding:12px;
-    background:#f5f5f5;
-    border:1px solid #ddd;
-    border-radius:8px;
-    font-family:monospace;
-    white-space:pre-line;
-">
-Поверните модель мышью...
+    <button onclick="copyPart()">
+        Копировать
+    </button>
+
+    <pre id="partCode"></pre>
 </div>
 
 
@@ -838,32 +884,51 @@ function showPart(name) {
     return;
   }
 
-  const model = document.querySelector("#model");
-
-  model.removeAttribute("auto-rotate");
-
-  model.cameraTarget = parts[name].target;
-  model.cameraOrbit = parts[name].orbit;
-}
 
 
 
-const model = document.getElementById("model");
-const panel = document.getElementById("cameraInfo");
+ const model = document.getElementById("model");
+
+const partCode = document.getElementById("partCode");
 
 setInterval(() => {
 
-    const orbit = model.getCameraOrbit().toString();
-    const target = model.getCameraTarget().toString();
+    const orbit =
+        model.getCameraOrbit().toString();
 
-    panel.textContent =
-`target: "${target}"
+    const target =
+        model.cameraTarget;
 
-orbit: "${orbit}"`;
+    const name =
+        document.getElementById("partName").value;
 
-}, 100);
+    partCode.textContent =
+
+`${name}: {
+
+    target: "${target}",
+
+    orbit: "${orbit}",
+
+    pdf: ""
+
+},`;
+
+},100); 
 
 
+
+
+function copyPart(){
+
+    navigator.clipboard.writeText(
+
+        document.getElementById("partCode").textContent
+
+    );
+
+    alert("Скопировано!");
+}
   
 
 </script>
