@@ -887,37 +887,7 @@ function showPart(name) {
 
 
 
- const model = document.getElementById("model");
 
-const partCode = document.getElementById("partCode");
-
-
- setInterval(() => {
-
-    console.clear();
-
-    console.log("Orbit:", model.getCameraOrbit());
-
-    console.log("Target:", model.cameraTarget);
-
-    console.log("Part:", document.getElementById("partName"));
-
-}, 1000); 
-
-
-
-
-function copyPart(){
-
-    navigator.clipboard.writeText(
-
-        document.getElementById("partCode").textContent
-
-    );
-
-    alert("Скопировано!");
-}
-  
 
 </script>
 
