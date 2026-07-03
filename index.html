@@ -797,14 +797,14 @@ fetch('/public/docs/description.docx')
 const parts = {
 
   cl: {
-    target: "0.5207949290982856m 0.08049999880790687m 0.11279294025973799m",
+    target: "0.5207949290982856m -0.08049999880790687m -0.11279294025973799m",
     orbit: "-2700deg 290deg 1m",
     pdf: "pump.pdf"
   },
 
   sh: {
-    target: -25deg 74deg 0.55m
-    orbit: 0.319m -0.076m -0.053m
+    target: "0.319m -0.076m -0.053m"
+    orbit: "-25deg 74deg 0.55m"
     pdf: "heat.pdf"
   },
   lmk: {
@@ -848,18 +848,21 @@ function showPart(name) {
 
 
 
-
 const model = document.getElementById("model");
 const info = document.getElementById("cameraInfo");
 
-model.addEventListener("camera-change", () => {
+setInterval(() => {
 
     info.innerHTML =
-`target: "${model.cameraTarget}"
 
-orbit: "${model.cameraOrbit}"`;
+`target:
+${model.cameraTarget}
 
-});
+orbit:
+${model.cameraOrbit}`;
+
+},100);
+
 
   
 
