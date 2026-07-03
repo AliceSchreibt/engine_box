@@ -891,30 +891,18 @@ function showPart(name) {
 
 const partCode = document.getElementById("partCode");
 
-setInterval(() => {
 
-    const orbit =
-        model.getCameraOrbit().toString();
+ setInterval(() => {
 
-    const target =
-        model.cameraTarget;
+    console.clear();
 
-    const name =
-        document.getElementById("partName").value;
+    console.log("Orbit:", model.getCameraOrbit());
 
-    partCode.textContent =
+    console.log("Target:", model.cameraTarget);
 
-`${name}: {
+    console.log("Part:", document.getElementById("partName"));
 
-    target: "${target}",
-
-    orbit: "${orbit}",
-
-    pdf: ""
-
-},`;
-
-},100); 
+}, 1000); 
 
 
 
