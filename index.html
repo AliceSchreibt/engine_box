@@ -849,8 +849,8 @@ const parts = {
   },
 
   sh: {
-    target: "0.319m -0.076m -0.053m"
-    orbit: "-25deg 74deg 0.55m"
+    target: "0.319m -0.076m -0.053m",
+    orbit: "-25deg 74deg 0.55m",
     pdf: "heat.pdf"
   },
   lmk: {
@@ -879,13 +879,16 @@ shf: {
 
 function showPart(name){
 
-  const model = document.querySelector("model-viewer");
+  const model = document.querySelector("#model");
 
-  model.cameraTarget = parts[name].target;
-  model.cameraOrbit = parts[name].orbit;
+  if (!model || !parts[name]) {
+    console.warn("Не найдено:", name);
+    return;
+  }
 
+  model.setAttribute("camera-target", parts[name].target);
+  model.setAttribute("camera-orbit", parts[name].orbit);
 }
-
 
 
 </script>
