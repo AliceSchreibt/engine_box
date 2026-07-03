@@ -876,6 +876,17 @@ shf: {
 }; 
 
 
+
+function showPart(name){
+
+  const model = document.querySelector("model-viewer");
+
+  model.cameraTarget = parts[name].target;
+  model.cameraOrbit = parts[name].orbit;
+
+}
+
+
   
 function showPart(name) {
 
