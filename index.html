@@ -879,15 +879,14 @@ shf: {
 
 function showPart(name){
 
-  const model = document.querySelector("#model");
+    const model = document.querySelector("#model");
 
-  if (!model || !parts[name]) {
-    console.warn("Не найдено:", name);
-    return;
-  }
+    if (!model || !parts[name]) return;
 
-  model.setAttribute("camera-target", parts[name].target);
-  model.setAttribute("camera-orbit", parts[name].orbit);
+    model.cameraTarget = parts[name].target;
+    model.cameraOrbit = parts[name].orbit;
+
+    model.jumpCameraToGoal();
 }
 
 
