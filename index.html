@@ -879,16 +879,27 @@ shf: {
 
 function showPart(name){
 
-    const model = document.querySelector("#model");
+    const model = document.getElementById("model");
 
-    if (!model || !parts[name]) return;
+    if (!parts[name]) return;
+
+    console.log("До:");
+    console.log(model.getCameraOrbit().toString());
 
     model.cameraTarget = parts[name].target;
     model.cameraOrbit = parts[name].orbit;
 
-    model.jumpCameraToGoal();
-}
+    console.log("После присвоения:");
+    console.log(model.getCameraOrbit().toString());
 
+    setTimeout(() => {
+
+        console.log("Через 500 мс:");
+        console.log(model.getCameraOrbit().toString());
+
+    },500);
+
+}
 
 </script>
 
