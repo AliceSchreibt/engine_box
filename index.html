@@ -887,8 +887,9 @@ function showPart(name){
     console.log("До:");
     console.log(model.getCameraOrbit().toString());
 
-    model.cameraTarget = parts[name].target;
-    model.cameraOrbit = parts[name].orbit;
+    /*model.cameraTarget = parts[name].target;
+    model.cameraOrbit = parts[name].orbit;*/
+  
     model.cameraTarget = hotspot.dataset.position;
     model.jumpCameraToGoal();
     console.log("После присвоения:");
