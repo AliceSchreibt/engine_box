@@ -881,8 +881,7 @@ shf: {
 function showPart(name){
 
     const model = document.getElementById("model");
-    model.cameraTarget = hotspot.dataset.position;
-    model.jumpCameraToGoal();
+
     if (!parts[name]) return;
 
     console.log("До:");
@@ -890,7 +889,8 @@ function showPart(name){
 
     model.cameraTarget = parts[name].target;
     model.cameraOrbit = parts[name].orbit;
-
+    model.cameraTarget = hotspot.dataset.position;
+    model.jumpCameraToGoal();
     console.log("После присвоения:");
     console.log(model.getCameraOrbit().toString());
 
